@@ -10,7 +10,7 @@ body {
         background: #667966
     }
     /* Style the navbar */
-ul {
+ul#navbar{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -20,10 +20,10 @@ ul {
     position: sticky;
     top: 0;
 }
-li {
+ul#navbar > li {
     float: left;
 }
-li a {
+ul#navbar > li a {
     display: block;
     color: white;
     text-align: center;
@@ -33,11 +33,11 @@ li a {
                     
 /* Style the links */
 /* Change the color on hover*/
-li a:hover {
+ul#navbar > li a:hover {
     background-color: #ddd;
     color: black;
 }
-li a.active {
+ul#navbar > li a.active {
         background-color: #4CAF50;
 }
 /* Adding responsiveness to handle different screens*/
