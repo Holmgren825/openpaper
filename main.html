@@ -9,10 +9,41 @@ initial-scale=1">
     body {
         font-family: Arial, Helvetica, sans-serif;
     }
+    /* Style the top header*/
+    .header {
+        padding: 1px;
+        text-align: left;
+        background: #667966
+    }
+    /* Style the navbar */
+    .navbar{
+        overflow: hidden;
+        background-color: #666679;
+    }
+    /* Style the links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
 </style>
 </head>
 <body>
 
-    <h1>OpenPaper</h1>
+    <div class="header">
+        <h1> OpenPaper</h1>
+    </div>
+    <div class="navbar">
+        <a href='#'>Read</a>
+        <a href='#'>Review</a>
+        <a href='#'>Submit</a>
+    </div>
 </body>
 </html>
