@@ -13,11 +13,15 @@ initial-scale=1">
         <h1> OpenPaper</h1>
     </div>
     <ul id='navbar'>
-       <li> <a class='active' href='./main.html' >Home </a></li>
+       <li> <a href='./main.html' >Home </a></li>
        <li> <a href='./read.html'>Read</a></li>
        <li> <a href='#'>Review</a></li>
-       <li> <a href='./submit.html'>Submit</a></li>
+       <li> <a class='active' href='./submit.html'a>Submit</a></li>
        </ul>
-    <p>Hallo, Welcome to the landing page</p>
+    <h2>Submitting a paper</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple />
+        <input type="submit" value="Upload File" name="submit" />
+      </form>
 </body>
 </html>
