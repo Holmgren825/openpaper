@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en">
 <head>
    <title> OpenPaper</title> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, 
     initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
 </head>
 <body>
     <header>
-    <div class="container">
-        <h1 class="container"> OpenPaper</h1>
-    </div>
-    <ul class='menu'>
+    <h1>OpenPaper</h1>
+    </header>
+    <ul class="menu">
        <li> <a href='{{ url_for('home') }}'>Home </a></li>
        <li> <a href='{{ url_for('read') }}'>Read</a></li>
        <li> <a href='#'>Review</a></li>
        <li> <a href='./submit.html'>Submit</a></li>
        </ul>
-    </header>
     <div class='container'>
         {% block content %}
         {% endblock %}
