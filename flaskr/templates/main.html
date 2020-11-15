@@ -17,10 +17,21 @@
        <li> <a href='{{url_for('read') }}'>Read</a></li>
        <li> <a href='#'>Review</a></li>
        <li> <a href='{{url_for('submit') }}'>Submit</a></li>
-       </ul>
+       <div style='width: 25%'></div>
+       {% if g.user %}
+       <li><span>{{g.user['username']}}</span>
+       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+       {% else %}
+       <li><a href="{{ url_for('auth.register') }}">Register</a>
+       <li><a href="{{ url_for('auth.login') }}">Log In</a>
+       {% endif %}
+    </ul>
     <div class='container'>
-        {% block content %}
-        {% endblock %}
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}
+    {% endblock %}
     </div>
 </body>
 </html>
