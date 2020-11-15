@@ -1,27 +1,10 @@
-<!DOCTYPE html>
-<html lang="en"
-<head>
-   <title> OpenPaper</title> 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, 
-initial-scale=1">
-<link rel="stylesheet" type="text/css" href="./style.css"/>
-</head>
-<body>
 
-    <div class="header">
-        <h1> OpenPaper</h1>
+{% extends 'main.html' %}
+{% block content %}
+    <div>
+    <h1>Submit</h1>
+    <p>
+        This is the page for submitting a paper.
+    </p>
     </div>
-    <ul id='navbar'>
-       <li> <a href='./main.html' >Home </a></li>
-       <li> <a href='./read.html'>Read</a></li>
-       <li> <a href='#'>Review</a></li>
-       <li> <a class='active' href='./submit.html'a>Submit</a></li>
-       </ul>
-    <h2>Submitting a paper</h2>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="files[]" multiple />
-        <input type="submit" value="Upload File" name="submit" />
-      </form>
-</body>
-</html>
+{% endblock %}

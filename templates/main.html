@@ -13,10 +13,10 @@
     <h1>OpenPaper</h1>
     </header>
     <ul class="menu">
-       <li> <a href='{{ url_for('home') }}'>Home </a></li>
-       <li> <a href='{{ url_for('read') }}'>Read</a></li>
+       <li> <a href='{{url_for('home') }}'>Home </a></li>
+       <li> <a href='{{url_for('read') }}'>Read</a></li>
        <li> <a href='#'>Review</a></li>
-       <li> <a href='./submit.html'>Submit</a></li>
+       <li> <a href='{{url_for('submit') }}'>Submit</a></li>
        </ul>
     <div class='container'>
         {% block content %}
