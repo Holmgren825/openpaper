@@ -30,7 +30,7 @@ def review():
         ' WHERE published = 0'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('stream/index.html', posts=posts)
+    return render_template('stream/review.html', posts=posts)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -110,5 +110,16 @@ def delete(id):
     get_post(id)
     db = get_db()
     db.execute('DELETE FROM post WHERE id = ?', (id,))
+    db.commit()
+    return redirect(url_for('stream.index'))
+
+
+@bp.route('/<int:id>/approve', methods=('POST',))
+@login_required
+def approve(id):
+    get_post(id, check_author=False)
+    db = get_db()
+    db.execute('UPDATE post SET approvals = approvals + 1 WHERE id = ?', (id,))
+    db.execute('UPDATE post SET published = CASE WHEN approvals > 3 THEN 1 ELSE 0 END WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('stream.index'))
