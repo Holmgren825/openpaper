@@ -14,8 +14,8 @@
     </header>
     <ul class="menu">
        <li> <a href='{{url_for('home') }}'>Home </a></li>
-       <li> <a href='{{url_for('read') }}'>Read</a></li>
-       <li> <a href="{{url_for('stream.index')}}">Review</a></li>
+       <li> <a href="{{url_for('stream.index') }}">Read</a></li>
+       <li> <a href="{{url_for('stream.review')}}">Review</a></li>
        <li> <a href="{{url_for('stream.create') }}">Submit</a></li>
        <div style='width: 25%'></div>
        {% if g.user %}
