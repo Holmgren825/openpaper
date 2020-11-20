@@ -1,2 +1,2 @@
 # OpenPaper
-Just a hack at creating a publishing network.
+Just a hack at creating a publishing platform.
