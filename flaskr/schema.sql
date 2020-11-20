@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,4 +17,14 @@ CREATE TABLE post (
   published INTEGER NOT NULL DEFAULT 0 CHECK(published IN (0,1)),
   approvals INTEGER NOT NULL DEFAULT 0,
   FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE reviews (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER NOT NULL,
+  reviewer_id INTEGER NOT NULL,
+  comment TEXT NOT NULL,
+  approved INTEGER NOT NULL DEFAULT 0 CHECK(approved IN (0,1)),
+  FOREIGN KEY (post_id) REFERENCES post (id),
+  FOREIGN KEY (reviewer_id) REFERENCES user (id)
 );
