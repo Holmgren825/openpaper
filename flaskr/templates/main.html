@@ -15,12 +15,12 @@
     <ul class="menu">
        <li> <a href='{{url_for('home') }}'>Home </a></li>
        <li> <a href='{{url_for('read') }}'>Read</a></li>
-       <li> <a href='#'>Review</a></li>
-       <li> <a href='{{url_for('submit') }}'>Submit</a></li>
+       <li> <a href="{{url_for('stream.index')}}">Review</a></li>
+       <li> <a href="{{url_for('stream.create') }}">Submit</a></li>
        <div style='width: 25%'></div>
        {% if g.user %}
-       <li><span>{{g.user['username']}}</span>
        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+       <li><span>User: {{g.user['username']}}</span>
        {% else %}
        <li><a href="{{ url_for('auth.register') }}">Register</a>
        <li><a href="{{ url_for('auth.login') }}">Log In</a>

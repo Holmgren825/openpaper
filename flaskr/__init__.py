@@ -30,14 +30,17 @@ def create_app(test_config=None):
     def read():
         return(render_template('read.html'))
 
-    @app.route('/submit/')
-    def submit():
-        return(render_template('submit.html'))
+    # @app.route('/submit/')
+    # def submit():
+    #     return(render_template('submit.html'))
 
     from . import db
     db.init_app(app)
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import stream
+    app.register_blueprint(stream.bp)
 
     return app
