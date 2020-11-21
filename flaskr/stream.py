@@ -8,6 +8,7 @@ from flaskr.db import get_db
 bp = Blueprint('stream', __name__, url_prefix='/stream')
 
 
+# function to return all published papers under the read view.
 @bp.route('/')
 def index():
     db = get_db()
@@ -20,6 +21,8 @@ def index():
     return render_template('stream/index.html', posts=posts)
 
 
+# Slightly different compared to the read view. For this view, a login is
+# required and we only show unpublished papers.
 @bp.route('/review')
 @login_required
 def review():
@@ -33,6 +36,7 @@ def review():
     return render_template('stream/review.html', posts=posts)
 
 
+# View for creating a post.
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -59,6 +63,7 @@ def create():
     return render_template('stream/create.html')
 
 
+# Get the current post through its id.
 def get_post(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, title, body, created, author_id, username'
@@ -76,6 +81,7 @@ def get_post(id, check_author=True):
     return post
 
 
+# update post.
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -104,6 +110,7 @@ def update(id):
     return render_template('stream/update.html', post=post)
 
 
+# Remove post.
 @bp.route('/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
@@ -114,6 +121,7 @@ def delete(id):
     return redirect(url_for('stream.index'))
 
 
+# Old approve route. Probably changed soon.
 @bp.route('/<int:id>/approve', methods=('POST',))
 @login_required
 def approve(id):
