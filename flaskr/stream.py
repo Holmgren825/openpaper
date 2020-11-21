@@ -36,6 +36,36 @@ def review():
     return render_template('stream/review.html', posts=posts)
 
 
+# Methods for view for actually reviewing a paper
+@bp.route('/review/<int:id>', methods=('POST', 'GET'))
+@login_required
+def review_paper(id):
+    post = get_post_review(id)
+
+    if request.method == 'POST':
+        comment = request.form['new comment']
+        approved = request.form.get('approved')
+        error = None
+        if not comment:
+            error = 'Comment is required.'
+        if error is not None:
+            flash(error)
+
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO reviews (post_id, reviewer_id, comment, approved)'
+                ' VALUES (?, ?, ?, ?)',
+                (post['id'], g.user['id'], comment, approved)
+            )
+            db.commit()
+            return redirect(url_for('stream.review'))
+    comments = get_post_comments(id)
+
+    return render_template('stream/review_post.html', post=post,
+                           comments=comments)
+
+
 # View for creating a post.
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -79,6 +109,36 @@ def get_post(id, check_author=True):
         abort(403)
 
     return post
+
+
+# Get the current post through its id for review.
+def get_post_review(id, check_author=True):
+    post = get_db().execute(
+        'SELECT p.id, title, body, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' WHERE p.id = ?',
+        (id,)
+    ).fetchone()
+
+    if post is None:
+        abort(404, "Post id {0} doesn't exist.".format(id))
+
+    if check_author and post['author_id'] == g.user['id']:
+        abort(403)
+
+    return post
+
+
+# Fetch all comments for a certain post.
+def get_post_comments(id):
+    comments = get_db().execute(
+        'SELECT post_id, comment, r.created, approved'
+        ' FROM reviews r JOIN post p ON r.post_id = p.id'
+        ' WHERE post_id = ?',
+        (id,)
+    ).fetchall()
+
+    return comments
 
 
 # update post.

@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts for review{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="column">
+    <article class="post">
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about"> Submitted on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+  </div>
+  
+  <div class="column">
+    <h1>Comments</h1>
+    <p1>This is where reviewers post comments</p1>
+    <form method="post">
+      <label for="new comment">Add comment</label>
+      <br>
+      <textarea name="new comment" id="new comment" required>{{ request.form['new comment'] }}</textarea>
+      <br>
+      <input type="checkbox" id="approved" name="approved" value=1>
+      <label for="approved">Approved?</label>
+      <br><br>
+      <input type="submit" value="Submit">
+    </form>
+    <h2>Previous comments </h2>
+    {% for comment in comments %}
+        <article class="comment">
+          <div class="about">{{comment['created'].strftime('%Y-%m-%d')}}. Approved: {{comment['approved']}}</div>
+          <p class="body">{{ comment['comment'] }}</p>
+        </article>
+        {% if not loop.last %}
+          <hr>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
