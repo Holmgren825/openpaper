@@ -1,11 +1,13 @@
 body {
         font-family: Helvetica, Arial, sans-serif;
         margin: 0;
+        background: #272727;
         padding: 0px;
     }
     /* Style the top header*/
 header {
-    background-color: #667966;
+    background: linear-gradient(90deg, #0F8B93 -17.1%, rgb(255, 255, 255) 193.44%);
+    height: 94px;
     padding: 0px 0px;
     margin: 0;
 }
@@ -19,36 +21,99 @@ h1 {
 }
     /* Style the navbar */
 .menu {
+    position: absolute;
     list-style-type: none;
+    background: linear-gradient(90deg, #0F8B93 -17.1%, rgba(255, 255, 255) 193.44%);
     margin: 0;
+    height: 94px;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
     position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: relative;
     top: 0;
 }
-.menu > li {
+.menu > img{
+    position: relative;
     float: left;
-    display: inline;
+    padding-top: 25px;
+    padding-left: 20px;
 }
-.menu > li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.menu > h1 {
+    position: relative;
+    float: left;
+    font-family: HammersmithOne;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: normal;
+    color: #000000;
+    padding-top: 20px;
+    padding-right: 10px;
+}
+.menu > a {
+    position: relative;
+    float: left;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #000000;
+    text-decoration: none;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 15px;
+    
+}
+.post {
+    position: absolute;
+}
+.post > h1 {
+    position: relative;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 46px;
+
+    color: #FFFFFF;
+}                    
+.post > h1 a {
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 46px;
+
+    color: #FFFFFF;
+}
+.post-about {
+
+}
+.account {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    height: 61px;
+    width: 175px;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 30.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+}
+.account > a {
+    position: relative;
+    font-family: Merriweather;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    color: #000000;
     text-decoration: none;
 }
-                    
 /* Style the links */
 /* Change the color on hover*/
-.menu > li a:hover {
-    background-color: #ddd;
-    color: black;
-}
-.menu > li a.active {
-        background-color: #4CAF50;
-}
 .column{
    flex: 50%; 
 }

@@ -9,29 +9,29 @@
 
 </head>
 <body>
-    <header>
-    <h1>OpenPaper</h1>
-    </header>
-    <ul class="menu">
-       <li> <a href='{{url_for('home') }}'>Home </a></li>
-       <li> <a href="{{url_for('stream.index') }}">Read</a></li>
-       <li> <a href="{{url_for('stream.review')}}">Review</a></li>
-       <li> <a href="{{url_for('stream.create') }}">Submit</a></li>
-       <div style='width: 25%'></div>
+    <div class="menu">
+       <img src='{{url_for('static', filename='bird_icon.svg')}}'/>
+       <h1>OpenPaper</h1>
+       <a href='{{url_for('home') }}'>Home </a>
+       <a href="{{url_for('stream.index') }}">Papers</a>
+       <a href="{{url_for('stream.review')}}">Review</a>
+       <!--<a href="{{url_for('stream.create') }}">Submit</a>-->
+       <div class="account">
        {% if g.user %}
-       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-       <li><span>User: {{g.user['username']}}</span>
+       <a href="{{ url_for('auth.logout') }}">Log Out</a>
+       <span>User: {{g.user['username']}}</span>
        {% else %}
-       <li><a href="{{ url_for('auth.register') }}">Register</a>
-       <li><a href="{{ url_for('auth.login') }}">Log In</a>
+       <!--<a href="{{ url_for('auth.register') }}">Register</a>-->
+       <a href="{{ url_for('auth.login') }}">Log In</a>
        {% endif %}
-    </ul>
+       </div>
     <div class='container'>
     {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
     {% block content %}
     {% endblock %}
+    </div>
     </div>
 </body>
 </html>

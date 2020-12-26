@@ -9,8 +9,8 @@
   {% for post in posts %}
     <article class="post">
         <div>
-          <h1><a class="action" href="{{ url_for('stream.review_paper', id=post['id']) }}">{{post['title']}}</a></h1>
-          <div class="about">Submitted on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+          <h1><a href="{{ url_for('stream.review_paper', id=post['id']) }}">{{post['title']}}</a></h1>
+          <div class="post-about">Submitted on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
     </article>
   {% endfor %}
