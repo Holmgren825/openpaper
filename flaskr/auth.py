@@ -16,6 +16,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        password_repeat = request.form['password-repeat']
         db = get_db()
         error = None
 
@@ -23,6 +24,9 @@ def register():
             error = 'Username is required'
         elif not password:
             error = 'Password is required'
+        # Check that passwords match.
+        elif not password == password_repeat:
+            error = 'Passwords does not match'
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
