@@ -11,6 +11,7 @@ body {
 }
     /* Style the navbar */
 nav {
+    display: flex;
     position: absolute;
     list-style-type: none;
     background: linear-gradient(90deg, #0F8B93 -17.1%, rgba(255, 255, 255) 193.44%);
@@ -25,8 +26,9 @@ nav {
 nav img{
     position: relative;
     float: left;
-    padding-top: 25px;
-    padding-left: 20px;
+    top: 50%;
+    transform: translateY(-40%);
+    padding-left: 30px;
 }
 nav h1 {
     position: relative;
@@ -36,7 +38,9 @@ nav h1 {
     font-style: normal;
     font-weight: normal;
     color: #000000;
-    transform: translateY(-20%);
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
 }
 nav a {
     position: relative;
@@ -47,9 +51,11 @@ nav a {
     font-size: 24px;
     color: #000000;
     text-decoration: none;
-    padding-top: 30px;
+    top: 50%;
+    transform: translateY(-50%);
     padding-left: 30px;
     padding-right: 15px;
+    margin-top: 0;
     
 }
 .post {
@@ -108,27 +114,30 @@ hr.post {
     color:#FFFFFF;
 }
 
-.account {
+nav .account {
     position: absolute;
+    right: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    float: right;
     height: 61px;
     width: 175px;
     border: 2px solid #000000;
     box-sizing: border-box;
     border-radius: 30.5px;
-    transform: translateY(30%);
-    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 30px;
 }
-.account a {
+nav .account a {
+    float: right;
     font-family: Merriweather;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     color: #000000;
     text-decoration: none;
+    padding: 0;
+    top: 65%;
 }
 /* Style the links */
 /* Change the color on hover*/
