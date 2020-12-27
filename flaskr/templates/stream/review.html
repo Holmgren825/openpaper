@@ -8,14 +8,11 @@
   {% for post in posts %}
   <article>
         <div class="post">
-          <h1><a href="{{ url_for('stream.review_paper', id=post['id'])
-          }}">{{post['title']}}</a></h1>
+          <h1 class="heading1">{{post['title']}}</h1>
           <div class="about">
           <p>Submitted {{post['created'].strftime('%B %d, %Y') }}</p>
           </div>
-          <p>Hello, this is where the short abstract will go eventually. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis, lectus ut suscipit dapibus, velit arcu suscipit arcu, eu consequat orci sem ac mauris. Vivamus maximus diam quis mi mattis, ut porttitor metus rutrum. Phasellus tristique eros sit amet lorem sollicitudin pellentesque. Sed tincidunt est at lacus dapibus, id malesuada libero tempus. Maecenas ultrices eros ornare venenatis iaculis. Nunc rhoncus accumsan leo, sed congue diam eleifend sed. Etiam malesuada vulputate neque ut luctus. Pellentesque lobortis eget lectus sit amet blandit. In finibus vitae erat quis pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. In a lectus sem.
-          </p>
+          <p>{{post['abstract']}}</p>
           </div>
           <div class="continue">
             <a href="{{ url_for('stream.review_paper',
