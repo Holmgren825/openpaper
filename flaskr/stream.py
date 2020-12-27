@@ -13,13 +13,19 @@ bp = Blueprint('stream', __name__, url_prefix='/stream')
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
+        'SELECT p.id, title, abstract, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE published = 1'
         ' ORDER BY created DESC'
     ).fetchall()
     return render_template('stream/index.html', posts=posts)
 
+
+# Open a published paper to read it.
+@bp.route('/read/<int:id>')
+def read_paper(id):
+    post = get_post(id, check_author=False)
+    return(render_template('stream/read.html', post=post))
 
 # Slightly different compared to the read view. For this view, a login is
 # required and we only show unpublished papers.
@@ -59,6 +65,15 @@ def review_paper(id):
                 (post['id'], g.user['id'], comment, approved)
             )
             db.commit()
+
+            if approved:
+                db.execute('UPDATE post SET approvals = approvals + 1 WHERE id = ?', 
+                (post['id'],)
+                )
+                db.execute('UPDATE post SET published = CASE WHEN approvals > 3 THEN 1 ELSE 0 END WHERE id = ?',
+                (post['id'],)
+                )
+                db.commit()
             return redirect(url_for('stream.review_paper', id=post['id']))
     comments = get_post_comments(id)
 

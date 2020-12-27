@@ -1,0 +1,21 @@
+
+{% extends 'main.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts for review{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article>
+        <div class="post">
+          <h1 class="heading1">{{ post['title'] }}</h1>
+          <div class="about"> 
+            <p>Submitted {{post['created'].strftime('%B %d, %Y') }}</p>
+            </div>
+        <h2 class="heading2">Abstract</h2>
+        <p class="abstract">{{ post['abstract'] }}</p>
+        <h2 class="heading2">Body</h2>
+        <p class="body">{{ post['body'] }}</p>
+      </div>
+    </article>
+{% endblock %}
