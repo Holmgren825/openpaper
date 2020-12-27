@@ -28,7 +28,7 @@ def index():
 def review():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
+        'SELECT p.id, title, abstract, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE published = 0'
         ' ORDER BY created DESC'
@@ -72,20 +72,24 @@ def review_paper(id):
 def create():
     if request.method == 'POST':
         title = request.form['title']
+        abstract = request.form['abstract']
         body = request.form['body']
         error = None
 
         if not title:
             error = 'Title is required.'
-
+        elif not abstract:
+            error = 'Abstract is required.'
+        elif not body:
+            error = 'Body is required.'
         if error is not None:
             flash(error)
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (title, body, author_id)'
-                ' VALUES (?, ?, ?)',
-                (title, body, g.user['id'])
+                'INSERT INTO post (title, abstract, body, author_id)'
+                ' VALUES (?, ?, ?, ?)',
+                (title, abstract, body, g.user['id'])
             )
             db.commit()
             return redirect(url_for('stream.index'))
