@@ -217,6 +217,10 @@ nav .account a {
 }
 /* Style the links */
 /* Change the color on hover*/
+.flash {
+    margin-top: 20px;
+    color: #FFFFFF;
+}
 .column{
    flex: 50%; 
 }

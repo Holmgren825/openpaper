@@ -15,5 +15,8 @@
   <div class="register-button">
     <a href="{{ url_for('auth.register') }}">Register</a>
   </div>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
 
 {% endblock %}
