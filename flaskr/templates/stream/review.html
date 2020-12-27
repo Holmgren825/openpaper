@@ -1,17 +1,29 @@
 {% extends 'main.html' %}
 
-{% block header %}
+<!--{% block header %}
   <h1>{% block title %}Posts for review{% endblock %}</h1>
 {% endblock %}
-
+-->
 {% block content %}
-  <h1>Papers open for review</h1>
   {% for post in posts %}
-    <article class="post">
-        <div>
-          <h1><a href="{{ url_for('stream.review_paper', id=post['id']) }}">{{post['title']}}</a></h1>
-          <div class="post-about">Submitted on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-        </div>
+  <article>
+        <div class="post">
+          <h1><a href="{{ url_for('stream.review_paper', id=post['id'])
+          }}">{{post['title']}}</a></h1>
+          <div class="about">
+          <p>Submitted {{post['created'].strftime('%B %d, %Y') }}</p>
+          </div>
+          <p>Hello, this is where the short abstract will go eventually. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras iaculis, lectus ut suscipit dapibus, velit arcu suscipit arcu, eu consequat orci sem ac mauris. Vivamus maximus diam quis mi mattis, ut porttitor metus rutrum. Phasellus tristique eros sit amet lorem sollicitudin pellentesque. Sed tincidunt est at lacus dapibus, id malesuada libero tempus. Maecenas ultrices eros ornare venenatis iaculis. Nunc rhoncus accumsan leo, sed congue diam eleifend sed. Etiam malesuada vulputate neque ut luctus. Pellentesque lobortis eget lectus sit amet blandit. In finibus vitae erat quis pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. In a lectus sem.
+          </p>
+          </div>
+          <div class="continue">
+            <a href="{{ url_for('stream.review_paper',
+            id=post['id'])}}">Continue reading</a>
+          </div>
     </article>
+    {% if not loop.last %}
+      <hr class="post">
+    {% endif %}
   {% endfor %}
 {% endblock %}

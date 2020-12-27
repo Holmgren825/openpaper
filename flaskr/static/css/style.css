@@ -5,40 +5,30 @@ body {
         padding: 0px;
     }
     /* Style the top header*/
-header {
-    background: linear-gradient(90deg, #0F8B93 -17.1%, rgb(255, 255, 255) 193.44%);
-    height: 94px;
-    padding: 0px 0px;
-    margin: 0;
-}
-h1 {
-    padding: 0px 0px;
-    margin: 0
-}
 .container  {
     padding: 0px 0px;
     text-align: left;
 }
     /* Style the navbar */
-.menu {
+nav {
     position: absolute;
     list-style-type: none;
     background: linear-gradient(90deg, #0F8B93 -17.1%, rgba(255, 255, 255) 193.44%);
     margin: 0;
     height: 94px;
+    width: 100%;
     padding: 0;
     overflow: hidden;
     position: -webkit-sticky; /* Safari */
-    position: relative;
     top: 0;
 }
-.menu > img{
+nav img{
     position: relative;
     float: left;
     padding-top: 25px;
     padding-left: 20px;
 }
-.menu > h1 {
+nav h1 {
     position: relative;
     float: left;
     font-family: HammersmithOne;
@@ -46,10 +36,9 @@ h1 {
     font-style: normal;
     font-weight: normal;
     color: #000000;
-    padding-top: 20px;
-    padding-right: 10px;
+    transform: translateY(-20%);
 }
-.menu > a {
+nav a {
     position: relative;
     float: left;
     font-family: Merriweather;
@@ -64,32 +53,63 @@ h1 {
     
 }
 .post {
-    position: absolute;
+    position: relative;
+    padding-left: 50px;
 }
 .post > h1 {
-    position: relative;
-    font-family: Merriweather;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 46px;
-
-    color: #FFFFFF;
-}                    
+    margin-block-end: 0;
+}
 .post > h1 a {
-    font-family: Merriweather;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 46px;
-
+    text-decoration: none;
     color: #FFFFFF;
+    font-family: Merriweahter;
+    font-style:normal;
+    font-weight: 400;
+    font-size: 26px;
+    margin-block-end: 0px;
 }
-.post-about {
+.post > p {
+    font-family: Merriweather;
+    color: #FFFFFF;
+    max-width: 900px;
+    
+}
+hr.post {
+    color:#FFFFFF;
+    width: 900px; 
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.post .about > p {
+    font-family: Merriweahter;
+    font-style:normal;
+    font-weight: 200;
+    font-size: 16px;
+    color:#FFFFFF;
+    margin-top: 12px;
+}
+.continue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    width: 225px;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 25px;
+    margin-left: 50px;
+}
+.continue > a {
+    text-decoration: none;
+    font-family: Merriweahter;
+    font-style:normal;
+    font-weight: 200;
+    font-size: 16px;
+    color:#FFFFFF;
+}
 
-}
 .account {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,12 +119,10 @@ h1 {
     border: 2px solid #000000;
     box-sizing: border-box;
     border-radius: 30.5px;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(30%);
     right: 30px;
 }
-.account > a {
-    position: relative;
+.account a {
     font-family: Merriweather;
     font-style: normal;
     font-weight: 400;
@@ -116,6 +134,10 @@ h1 {
 /* Change the color on hover*/
 .column{
    flex: 50%; 
+}
+.content {
+    padding-top: 115px;
+    padding-left: 30px;
 }
 .row{
     display: flex;

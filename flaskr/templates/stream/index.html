@@ -1,10 +1,12 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <h1 class="post">Hej test</h1>
+  <div class="post">
+  <h1>Hej test</h1>
+  </div>
   {% for post in posts %}
-    <article class="post">
-        <div>
+    <article>
+        <div class="post">
           <h1>{{ post['title'] }}</h1>
           <div class="post-about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
