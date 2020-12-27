@@ -7,38 +7,48 @@
 {% block content %}
 <div class="row">
 <div class="column">
-    <article class="post">
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about"> Submitted on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-        </div>
-      <p class="body">{{ post['body'] }}</p>
+    <article>
+        <div class="post">
+          <h1 class="heading1">{{ post['title'] }}</h1>
+          <div class="about"> 
+            <p>Submitted {{post['created'].strftime('%B %d, %Y') }}</p>
+            </div>
+        <h2 class="heading2">Abstract</h2>
+        <p class="abstract">{{ post['abstract'] }}</p>
+        <h2 class="heading2">Body</h2>
+        <p class="body">{{ post['body'] }}</p>
+      </div>
     </article>
   </div>
-  
-  <div class="column">
-    <h1>Comments</h1>
-    <p1>This is where reviewers post comments</p1>
-    <form method="post">
-      <label for="new comment">Add comment</label>
-      <br>
-      <textarea name="new comment" id="new comment" required>{{ request.form['new comment'] }}</textarea>
-      <br>
+  <div class="column2">
+    <div class="comments">
+    <h2 class="heading2">Comments</h1>
+    <form class="comments" method="post">
+      <textarea name="new comment" id="new comment" required placeholder="Add comment...">{{ request.form['new comment'] }}</textarea>
+      <div>
       <input type="checkbox" id="approved" name="approved" value=1>
       <label for="approved">Approved?</label>
-      <br><br>
+      </div>
       <input type="submit" value="Submit">
     </form>
-    <h2>Previous comments </h2>
+    <h2 class="heading2">Previous comments </h2>
     {% for comment in comments %}
-        <article class="comment">
-          <div class="about">{{comment['created'].strftime('%Y-%m-%d')}}. Approved: {{comment['approved']}}</div>
-          <p class="body">{{ comment['comment'] }}</p>
+        <article>
+          <div class="comments">
+          <div class="about">
+            <p>{{comment['created'].strftime('%Y-%m-%d')}}. Approved:
+            {{comment['approved']}}</p>
+          </div>
+          <div class="body">
+          <p>{{ comment['comment'] }}</p>
+          </div>
+        </div>
         </article>
         {% if not loop.last %}
-          <hr>
+          <hr class="comments">
         {% endif %}
     {% endfor %}
     </div>
+</div>
 </div>
 {% endblock %}

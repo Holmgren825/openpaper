@@ -44,7 +44,7 @@ def review_paper(id):
 
     if request.method == 'POST':
         comment = request.form['new comment']
-        approved = request.form.get('approved')
+        approved = request.form.get('approved') != None
         error = None
         if not comment:
             error = 'Comment is required.'
@@ -59,7 +59,7 @@ def review_paper(id):
                 (post['id'], g.user['id'], comment, approved)
             )
             db.commit()
-            return redirect(url_for('stream.review'))
+            return redirect(url_for('stream.review_paper', id=post['id']))
     comments = get_post_comments(id)
 
     return render_template('stream/review_post.html', post=post,
@@ -100,7 +100,7 @@ def create():
 # Get the current post through its id.
 def get_post(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, body, created, author_id, username'
+        'SELECT p.id, title, abstract, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
@@ -118,7 +118,7 @@ def get_post(id, check_author=True):
 # Get the current post through its id for review.
 def get_post_review(id, check_author=True):
     post = get_db().execute(
-        'SELECT p.id, title, body, created, author_id, username'
+        'SELECT p.id, title, abstract, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' WHERE p.id = ?',
         (id,)
