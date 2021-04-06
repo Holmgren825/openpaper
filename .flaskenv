@@ -1,0 +1,2 @@
+FLASK_APP=openpaper
+FLASK_ENV=development
