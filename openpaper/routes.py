@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from openpaper import app, db
 from openpaper.forms import LoginForm,RegistrationForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from openpaper.models import User
 from werkzeug.urls import url_parse
 
@@ -15,9 +15,18 @@ def home():
 # def read():
 #     return(render_template('read.html'))
 
-# @app.route('/submit/')
-# def submit():
-#     return(render_template('submit.html'))
+@app.route('/submit/')
+@login_required
+def submit():
+    return(render_template('stream/submit.html'))
+
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+
+    return render_template('user.html', user=user)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -33,7 +42,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('home')
+            next_page = url_for('user', username=current_user.username)
         return redirect(next_page)
 
     return render_template('auth/login.html', title='Sign In', form=form)
