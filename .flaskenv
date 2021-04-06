@@ -1,2 +1,2 @@
-FLASK_APP=openpaper
+FLASK_APP=openpaper.py
 FLASK_ENV=development

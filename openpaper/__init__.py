@@ -1,46 +1,32 @@
 import os
 from flask import Flask, render_template
+from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager
+
+app = Flask(__name__)
+app.config.from_object(Config)
+
+# Ensure that the instance folder exist.
+try:
+    os.makedirs(app.instance_path)
+except OSError:
+    pass
 
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlie')
-    )
+# New database init
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-    if test_config is None:
-        # load the instance config, if it exists, when not test
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
+# Auth
+login = LoginManager(app)
+login.login_view = 'login'
+# from . import auth
+# app.register_blueprint(auth.bp)
+# 
+# from . import stream
+# app.register_blueprint(stream.bp)
+# 
 
-    # Ensure that the instance folder exist.
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
-    @app.route('/')
-    def home():
-        return(render_template('main.html'))
-
-    @app.route('/read/')
-    def read():
-        return(render_template('read.html'))
-
-    # @app.route('/submit/')
-    # def submit():
-    #     return(render_template('submit.html'))
-
-    from . import db
-    db.init_app(app)
-
-    from . import auth
-    app.register_blueprint(auth.bp)
-
-    from . import stream
-    app.register_blueprint(stream.bp)
-
-    return app
+from openpaper import routes, models

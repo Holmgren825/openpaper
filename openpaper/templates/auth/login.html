@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form class="auth" method="post">
+  <!--<form class="auth" method="post">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>
     <label for="password">Password</label>
@@ -13,10 +13,31 @@
     <input type="submit" value="Log In">
   </form>
   <div class="register-button">
-    <a href="{{ url_for('auth.register') }}">Register</a>
+    <a href="{}">Register</a>
   </div>
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
-  {% endfor %}
-
+  {% endfor %}-->
+    <form action="" method="post" novalidate class="auth">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32, id="username") }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32, id="password") }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <div class="register-button">
+      <a href="{{url_for('register')}}">Register</a>
+    </div>
 {% endblock %}
