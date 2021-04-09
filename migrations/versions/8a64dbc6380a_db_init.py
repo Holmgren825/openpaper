@@ -1,8 +1,8 @@
-"""users and posts table
+"""Db init
 
-Revision ID: a18ae306c302
+Revision ID: 8a64dbc6380a
 Revises: 
-Create Date: 2021-04-06 15:49:37.996698
+Create Date: 2021-04-09 12:29:57.978706
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a18ae306c302'
+revision = '8a64dbc6380a'
 down_revision = None
 branch_labels = None
 depends_on = None
