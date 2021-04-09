@@ -51,6 +51,24 @@ def user(username):
     return render_template('user.html', user=user) 
 
 
+@app.route('/user/<username>/stakes/papers')
+@login_required
+def user_posts(username):
+    # Get the user again. Necessary?
+    user = User.query.filter_by(username=username).first_or_404()
+    page = request.args.get('page', 1, type=int)
+    posts = user.posts.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POST_PER_PAGE'], False
+    )
+    # Link for the new pages.
+    next_url = url_for('user_posts', page=posts.next_num, username=username) \
+        if posts.has_next else None
+    prev_url = url_for('user_posts', page=posts.prev_num, username=username) \
+        if posts.has_prev else None
+    return render_template('stream/user_posts.html', title='User posts',
+                           user=user, posts=posts.items, next_url=next_url,
+                           prev_url=prev_url)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
