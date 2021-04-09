@@ -3,7 +3,6 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 from openpaper.auth import login_required
-from openpaper.db import get_db
 
 bp = Blueprint('stream', __name__, url_prefix='/stream')
 
@@ -11,14 +10,7 @@ bp = Blueprint('stream', __name__, url_prefix='/stream')
 # function to return all published papers under the read view.
 @bp.route('/')
 def index():
-    db = get_db()
-    posts = db.execute(
-        'SELECT p.id, title, abstract, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
-        ' WHERE published = 1'
-        ' ORDER BY created DESC'
-    ).fetchall()
-    return render_template('stream/index.html', posts=posts)
+    return render_template('stream/index.html')
 
 
 # Open a published paper to read it.

@@ -1,4 +1,5 @@
 from openpaper import app, db
+from openpaper import models
 from openpaper.models import User, Post
 
 

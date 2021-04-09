@@ -257,6 +257,7 @@ nav .account a {
     border-radius: 20px;
     font-size: 16px;
     padding: 12px 20px;
+    font-family: Merriweather;
 }
 .submit textarea.body {
     height: 400px;
