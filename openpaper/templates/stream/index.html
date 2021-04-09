@@ -17,4 +17,16 @@
       <hr class="post">
     {% endif %}
   {% endfor %}
+  <br>
+  <br>
+  {% if prev_url %}
+  <div class="continue">
+    <a href="{{ prev_url }}">Newer posts</a>
+  </div>
+    {% endif %}
+    {% if next_url %}
+    <div class="continue">
+    <a href="{{ next_url }}">Older posts</a>
+    </div>
+    {% endif %}
 {% endblock %}

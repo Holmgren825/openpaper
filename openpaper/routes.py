@@ -31,8 +31,18 @@ def submit():
 
 @app.route('/papers')
 def papers():
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
-    return render_template('stream/index.html', posts=posts)
+    # Pagination
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, app.config['POST_PER_PAGE'], False
+    )
+    # Link for the new pages.
+    next_url = url_for('papers', page=posts.next_num) \
+        if posts.has_next else None
+    prev_url = url_for('papers', page=posts.prev_num) \
+        if posts.has_prev else None
+    return render_template('stream/index.html', posts=posts.items,
+                           next_url=next_url, prev_url=prev_url)
 
 @app.route('/user/<username>')
 @login_required
