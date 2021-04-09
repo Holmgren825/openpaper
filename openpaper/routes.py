@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from openpaper import app, db
-from openpaper.forms import LoginForm,RegistrationForm
+from openpaper.forms import LoginForm, RegistrationForm, PostForm
 from flask_login import current_user, login_user, logout_user, login_required
-from openpaper.models import User
+from openpaper.models import User, Post
 from werkzeug.urls import url_parse
 
 
@@ -15,18 +15,30 @@ def home():
 # def read():
 #     return(render_template('read.html'))
 
-@app.route('/submit/')
+@app.route('/submit/', methods=['GET', 'POST'])
 @login_required
 def submit():
-    return(render_template('stream/submit.html'))
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, abstract=form.abstract.data,
+                    author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Submitted!')
+        return redirect(url_for('home'))
+    return(render_template('stream/submit.html', title='Submit', form=form))
 
+
+@app.route('/papers')
+def papers():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('stream/index.html', posts=posts)
 
 @app.route('/user/<username>')
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-
-    return render_template('user.html', user=user)
+    return render_template('user.html', user=user) 
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -52,6 +64,7 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

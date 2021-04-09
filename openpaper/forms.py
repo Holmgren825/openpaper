@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+from wtforms.validators import Length
+from wtforms import TextAreaField
 
 from openpaper.models import User
 
@@ -29,3 +31,11 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email adress')
+
+
+class PostForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(),
+                        Length(min=1, max=140)])
+    abstract = TextAreaField('Abstract', validators=[DataRequired(),
+                             Length(min=1, max=400)])
+    submit = SubmitField('Submit')
