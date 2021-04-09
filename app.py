@@ -1,5 +1,5 @@
 from openpaper import app, db
-from app.models import User, Post
+from openpaper.models import User, Post
 
 
 @app.shell_context_processor
