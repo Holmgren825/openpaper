@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1 class="heading1">Your posts</h1>
+<h1 class="heading1">Your submissions</h1>
 <hr>
   {% for post in posts %}
   <article>
@@ -11,9 +11,14 @@
           </div>
           <p>{{post.abstract}}</p>
           </div>
-          <div class="continue">
-            <a href="">Continue reading</a>
+        <div>
+          <div class="button1">
+            <a href="">Edit</a>
           </div>
+          <div class="button1">
+            <a href="{{url_for('delete_post', username=current_user.username, id=post.id)}}">Delete?</a>
+          </div>
+        </div>
     </article>
     {% if not loop.last %}
       <hr class="post">

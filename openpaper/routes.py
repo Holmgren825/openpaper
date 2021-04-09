@@ -69,6 +69,22 @@ def user_posts(username):
                            user=user, posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
 
+
+@app.route('/user/<username>/stakes/papers/<id>')
+@login_required
+def delete_post(username, id):
+    user = User.query.filter_by(username=username).first_or_404()
+    post = Post.query.filter_by(id=id).first_or_404()
+    if user == post.author:
+        db.session.delete(post)
+        db.session.commit()
+        flash('Paper deleted')
+    else:
+        flash('You are not allowed to delete this paper.')
+    return redirect(url_for('user_posts', username=username))
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

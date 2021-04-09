@@ -114,6 +114,27 @@ hr.post {
     color:#FFFFFF;
 }
 
+.button1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    width: 225px;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 25px;
+    margin-left: 50px;
+    float: left;
+}
+.button1 > a {
+    text-decoration: none;
+    font-family: Merriweahter;
+    font-style:normal;
+    font-weight: 200;
+    font-size: 16px;
+    color:#FFFFFF;
+}
+
 nav .account {
     position: absolute;
     right: 0;

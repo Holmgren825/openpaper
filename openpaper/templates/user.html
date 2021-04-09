@@ -3,8 +3,12 @@
 <div class="post">
     <h1 class="heading1">Welcome, {{ user.username }}</h1>
     <p class="body">Lorem Ipsum</p>
-    <div class="continue">
-    <a href="{{url_for('user_posts', username=current_user.username)}}">Your posts</a>
+</div>
+<div>
+    <div class="button1">
+    <a href="{{url_for('user_posts', username=current_user.username)}}">Your submissions</a>
     </div>
-</div> 
+<div class="button1">
+        <a href="{{url_for('submit')}}">Submit</a>
+</div>
 {% endblock %}
