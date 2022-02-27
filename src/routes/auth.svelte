@@ -1,12 +1,14 @@
 <script>
   import { user } from '../lib/user';
+  import { goto } from '$app/navigation';
   let username;
   let password;
   let loginErr;
   let signupErr;
-  import { goto } from '$app/navigation';
+
 
   function login() {
+      console.log('Log: Try login')
       user.auth(username, password, ({ err }) => {
           if (err) {
               //alert(err);
@@ -14,27 +16,30 @@
               password = '';
               loginErr = err;
           } else {
-              goto(`/${username}`);
+              goto(`/`);
+              // Current User's username
+
+              //user.get('alias').on((v) => username.set(v));
           }
       });
   }
   function signup() {
-		user.create(username, password, ({ err }) => {
-			if (err) {
-				//alert(err);
-				signupErr = err;
-				username = '';
-				password = '';
-			} else {
-				login();
-			}
-		});
-	}
+      console.log('Log: Try signup')
+    	user.create(username, password, ({ err }) => {
+    		if (err) {
+    			//alert(err);
+    			signupErr = err;
+    			username = '';
+    			password = '';
+    		} else {
+    			login();
+    		}
+    	});
+    }
     function logout() {
     user.leave();
     username.set('');
-	}
-
+    }
 </script>
 
 <h1 class="text-white text-xl p-2 py-3 mx-2">Sign in</h1>

@@ -1,6 +1,12 @@
 <script>
 	import { page } from '$app/stores';
 	import logo from './bird_icon.svg';
+    import { username, user } from '../user';
+
+    function signout() {
+      user.leave();
+      username.set('');
+    }
 </script>
 
 <header>
@@ -13,7 +19,12 @@
       <div class="flex space-x-4">
         <a class="hover:bg-emerald-600 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/">Home</a>
         <a class="hover:bg-emerald-600 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/submissions">Submissions</a>
+        {#if !$username}
         <a class="hover:bg-emerald-600 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/auth">Sign in</a>
+        {/if}
+        {#if $username}
+        <button class="hover:bg-emerald-600 hover:text-white px-2 py-2 rounded-md font-medium" on:click={signout} >Sign out</button>
+        {/if}
         <a class="hover:bg-emerald-600 hover:text-white px-2 py-2 rounded-md font-medium"  sveltekit:prefetch href="/about">About</a>
       </div>
       </div>
