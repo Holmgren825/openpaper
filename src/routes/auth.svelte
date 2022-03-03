@@ -49,7 +49,7 @@
     type="text"
     placeholder="Username"
     bind:value={username}
-    class="border-2 rounded-full border-white p-2 bg-neutral-800 w-full"
+    class="border-2 rounded-lg border-white p-2 bg-neutral-800 w-full"
     />
 </div>
 <div class="p-2 px-4 mx-auto text-white"> 
@@ -57,11 +57,11 @@
     type="password"
     placeholder="Password"
     bind:value={password}
-    class="border-2 rounded-full border-white p-2 bg-neutral-800 w-full"
+    class="border-2 rounded-lg border-white p-2 bg-neutral-800 w-full"
     />
 </div>
 <div class="flex justify-between space-x-4 text-white p-2 px-4">
-    <button class="w-5/12 border-2 rounded-full border-white py-1 bg-neutral-800 hover:bg-gray-500" on:click={login}>Sign in </button>
-    <button class="w-5/12 border-2 rounded-full border-white py-1 bg-neutral-800 hover:bg-gray-500"  on:click={signup}>Sign up </button>
+    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-gray-500" on:click={login}>Sign in </button>
+    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-gray-500"  on:click={signup}>Sign up </button>
 </div>
 </div>

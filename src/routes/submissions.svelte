@@ -60,7 +60,7 @@
       </div>
       <div>
       <button 
-          class="w-5/12 border-2 rounded-full border-white py-2 bg-neutral-800 hover:bg-gray-500"
+          class="w-4/12 border-2 rounded-lg border-white py-2 bg-neutral-800 hover:bg-gray-500"
           on:click={on_submit}
           type="submit"
           disabled={!new_submission}
