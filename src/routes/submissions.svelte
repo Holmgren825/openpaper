@@ -1,18 +1,24 @@
 <script>
-  import { gun } from './../initGun';
+  import { gun, GUN } from './../initGun';
   import { user, username } from './../lib/user';
   import { onMount } from 'svelte'
+  import Submission from '../lib/Submission.svelte'
 
   let new_submission;
+  let new_title;
   let submissions = [];
 
   function on_submit(){
     console.log("Log: Submit")
     console.log(new_submission)
     const what = new_submission
-    const submission = user.get('all').set({what: what})
+    const submission = user.get('all').set({what: what, title: new_title})
     const index = new Date().toISOString();
     gun.get('submissions').get(index).put(submission);
+
+    // Clear fields
+    new_submission = ""
+    new_title = ""
   }
 
   onMount(() => {
@@ -32,9 +38,11 @@
         var submission = {
           who: await gun.user(data).get('alias'),
           what: (await data.what) + '',
+          title: (await data.title) + '',
+          when: GUN.state.is(data, 'what')
       };
       if (submission.what) {
-        submissions = [...submissions.slice(-100), submission];
+        submissions = [...submissions.slice(-100), submission].sort((a, b) => a.when - b.when);
         }
     }
   });
@@ -45,12 +53,20 @@
 </script>
 
 <div class="text-white p-2 py-2 mx-2 max-w-5xl">
-  <div>
-    <h1 class="text-xl">Submissions</h1>
-  </div>
   {#if $username}
+  <div>
+    <h1 class="text-xl">New Submission</h1>
+  </div>
     <div>
-    <form on:submit|preventDefault>
+    <form on:submit|preventDefault={on_submit}>
+      <div>
+      <input
+        type="text"
+        class="text-white h-15 w-full border-2 rounded-lg border-white my-2 p-2 bg-neutral-800"
+        placeholder="Set title..."
+        bind:value={new_title}
+        />
+      </div>
       <div>
       <textarea 
         class="text-white h-40 w-full border-2 rounded-lg border-white my-2 p-2 bg-neutral-800"
@@ -63,7 +79,7 @@
           class="w-4/12 border-2 rounded-lg border-white py-2 bg-neutral-800 hover:bg-gray-500"
           on:click={on_submit}
           type="submit"
-          disabled={!new_submission}
+          disabled={!new_submission || !$username}
           >
           Submit
           </button>
@@ -73,8 +89,8 @@
   {/if}
   <div class="py-4">
     <h1 class="text-xl">Previous submissions</h1>
-    {#each submissions as submission (submission)}
-      <p>{submission.who} {submission.what}</p>
+    {#each submissions as submission, index (submission.when)}
+      <Submission {submission}/>
     {/each}
   </div>
 </div>
