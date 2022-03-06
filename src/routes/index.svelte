@@ -8,7 +8,7 @@
 </svelte:head>
 
 {#if $username}
-  <h1 class="text-white text-xl py-4 px-2">Welcome to OpenPaper {$username}!</h1>
+  <h1 class="text-white text-xl p-6 ">Welcome to OpenPaper {$username}!</h1>
   {:else}
-  <h1 class="text-white text-xl py-4 px-2">Welcome to OpenPaper!</h1>
+  <h1 class="text-white text-xl p-6 ">Welcome to OpenPaper!</h1>
 {/if}

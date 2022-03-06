@@ -18,7 +18,7 @@
       </div>
       <div class="flex space-x-4">
         <a class="hover:bg-black hover:bg-opacity-10 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/">Home</a>
-        <a class="hover:bg-black hover:bg-opacity-10 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/submissions">Submissions</a>
+        <a class="hover:bg-black hover:bg-opacity-10 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/submissions">Read</a>
         {#if !$username}
         <a class="hover:bg-black hover:bg-opacity-10 hover:text-white px-2 py-2 rounded-md font-medium" sveltekit:prefetch href="/auth">Sign in</a>
         {/if}

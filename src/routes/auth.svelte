@@ -61,7 +61,7 @@
     />
 </div>
 <div class="flex justify-between space-x-4 text-white p-2 px-4">
-    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-gray-500" on:click={login}>Sign in </button>
-    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-gray-500"  on:click={signup}>Sign up </button>
+    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-sky-500 hover:border-sky-500" on:click={login}>Sign in </button>
+    <button class="w-5/12 border-2 rounded-lg border-white py-1 bg-neutral-800 hover:bg-sky-500 hover:border-sky-500"  on:click={signup}>Sign up </button>
 </div>
 </div>
