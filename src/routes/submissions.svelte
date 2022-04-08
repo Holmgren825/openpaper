@@ -18,6 +18,7 @@
           what: (await data.what),
           title: (await data.title),
           when: GUN.state.is(data, 'what'),
+          accepted: data.accepted,
       };
       if (submission.what) {
         submissions = [...submissions.slice(-100), submission].sort((a, b) => new Date(b.when)-new Date(a.when));
@@ -36,15 +37,18 @@
 }
 </script>
 
-<div class="flex text-white p-6 max-w-5xl justify-between">
-  <div>
+<div class="flex text-white p-6 max-w-5xl justify-between items-end">
+  <div class="">
   <h1 class="text-xl">Published</h1>
   </div>
   <div>
     <button class="rounded-lg border-2 border-sky-500 p-1 bg-sky-500 hover:bg-sky-400 hover:sky-400 " on:click={new_submission}>New submission</button>
   </div>
 </div>
-<div class="text-white px-4 max-w-5xl">
+<div>
+  <hr>
+</div>
+<div class="text-white px-4 py-2 max-w-5xl">
   {#each submissions as submission (submission.when) }
     <Submission {submission}/>
   {/each}

@@ -9,12 +9,14 @@
 
   function on_submit(){
     console.log("Log: Submit")
-    console.log(new_submission)
     const what = new_submission
     const accepted = false;
     const rejected = false;
     const stake = base_stake + added_stake;
-    const submission = user.get('all').set({what: what, title: new_title, stake: stake, accepted: accepted, rejected: rejected})
+    console.log(stake)
+    const submission = user.get('all').set({what: what, title: new_title,
+                                            stake: stake, accepted: accepted,
+                                            rejected: rejected})
     const index = new Date().toISOString();
     gun.get('submissions').get(index).put(submission);
 

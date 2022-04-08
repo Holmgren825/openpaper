@@ -26,12 +26,24 @@
 <div class="p-2 hover:rounded-lg hover:border-white hover:border-2 overflow-visible"
      on:click={change_submission_state}
   >
-  <div id="submission-title" class="flex space-x-4">
-    <div class="text-lg align-bottom">
-    <p>{submission.title}</p>
+  <div id="submission-title" class="flex space-x-4 items-end py-2">
+    <div class="text-xl">
+      <p>{submission.title}</p>
     </div>
-    <div class="align-bottom">
-    <p>{ts.toLocaleDateString()} {ts.toLocaleTimeString()}</p>
+    <div>
+      <p>{ts.toLocaleDateString()} {ts.toLocaleTimeString()}</p>
+    </div>
+  <div>
+        {#if submission.accepted}
+        <div class="rounded-lg border-2 px-2 bg-green-500">
+          <p>Accepted</p>
+       </div>
+        {/if}
+        {#if !submission.accepted}
+        <div class="rounded-lg px-2 bg-orange-500">
+          <p>In review</p>
+       </div>
+        {/if}
     </div>
   </div>
   <div id="submission-text" >
